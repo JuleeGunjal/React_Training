@@ -1,0 +1,3 @@
+   JavaScript is synchronous, blocking and single-threaded. This means that the JavaScript engine executes our program sequentially, one line at a time from top to bottom in the exact order of the statements.It processes our script line by line. Until a current task is completed, the next task cannot begin.
+   In case of script added in head or above the element to be accessed No change of content happened.
+   The body element we’re trying to call will not exist during the execution of the script. We can either move the <script> tag towards the closing <body> tag (same as in third case).

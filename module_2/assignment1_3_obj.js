@@ -55,3 +55,7 @@ USER = {
   password: '12356',
   birthDate: '25-06-1994',
 }  // Should not  replace the previous user by new one , and should raise error
+
+// CONCLUSION:
+// When the object declared as the let , we can update the its properties(add, remove, update). We can reassign the different properties to same variable. 
+// When the object declared as the const , we can add or remove the properties but cannot update the individual property.We cannot re-assign that variable with different properties.

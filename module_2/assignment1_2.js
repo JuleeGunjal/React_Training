@@ -12,16 +12,16 @@ let user = {
 let nan = NaN;
 let nullValue = null;
 
-console.log("float constant: ", typeof PI);
-console.log("Integer: ", typeof num1);
-console.log('character: ', typeof str);
-console.log('String: ', typeof name);
-console.log('Zero: ', typeof zero);
-console.log('Zero as a string: ', typeof strZero);
-console.log('Array: ', typeof arr);
-console.log('User object: ', typeof user);
-console.log('NaN: ', typeof nan);
-console.log('null : ', typeof nullValue);
+console.log("float constant: ", typeof PI); // float value also has number type
+console.log("Integer: ", typeof num1); // integer has number type
+console.log('character: ', typeof str); // No difference in character or multi word string both treated as string
+console.log('String: ', typeof name); // type is string
+console.log('Zero: ', typeof zero); // Integer zero treated as number
+console.log('Zero as a string: ', typeof strZero); // 0 in quotes treated as string
+console.log('Array: ', typeof arr); // Array is an object
+console.log('User object: ', typeof user); // user type is object
+console.log('NaN: ', typeof nan); // type number
+console.log('null : ', typeof nullValue); // null treated as object
 
 // if we perform any arithmetic operations with NaN , 
 // it will always result in a NaN . The type checking on NaN using the

@@ -5,7 +5,7 @@ let arraySize = 25;
 let array = []; 
 
 for(let i = 0; i < arraySize;){
-  array[i] = i;
+  array.push(i);
   i++;
 }
 

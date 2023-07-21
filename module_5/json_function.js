@@ -78,13 +78,20 @@ console.log(JSON.stringify(myProfile)); // It will stringify the whole obj along
                                         // }
 // What happens if we pass numbers, strings, undefined, null to JSON.stringify?
 let num = 12;
+console.log(typeof num); // number
 let str = 'Josh Software Company';
 let unDef = undefined;
 let nullValue = null;
+let strNum = JSON.stringify(num);
+console.log(typeof strNum); // string
 console.log(JSON.stringify(num)); // 12
+let strNullValue = JSON.stringify(nullValue);
+console.log(typeof strNullValue); // string
 console.log(JSON.stringify(str)); // "Josh Software Company"
 console.log(JSON.stringify(unDef)); // undefined
+let strUnDef = JSON.stringify(unDef);
+console.log(typeof strUnDef); // undefined
 console.log(JSON.stringify(nullValue)); // null
 
 // Conclusion:
-// We can only stringify the string only . We cannot stringify the number or undefined or null values
+// We can only stringify the string, number , and null  . We cannot stringify  undefined

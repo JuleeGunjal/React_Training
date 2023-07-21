@@ -13,7 +13,8 @@ let nullValue = null;
 invalidParse(nullValue);
 
 let str = 'John';
-invalidParse(str); // SyntaxError: Unexpected token J in JSON at position 0, Wrong quotes
+invalidParse(str); // SyntaxError: Unexpected token J in JSON at position 0, Wrong quotes => JSON parse cannot accept the
+// string given in single quotes , It requires the string in double quotes only.
 
 // let str1 = "John says "Hello!"";
 // invalidParse(str1); // SyntaxError: Unexpected identifier , "inside the string must use escape sequence \"

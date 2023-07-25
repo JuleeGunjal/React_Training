@@ -1,66 +1,75 @@
+let array = [
+  {
+    id: 1,
+    first_name: "Nicki",
+    email: "ncrozier0@squarespace.com",
+    date_of_birth: "2009/05/09",
+  },
+  {
+    id: 2,
+    first_name: "Raychel",
+    email: "rmcgrady1@cpanel.net",
+    date_of_birth: "1996/11/05",
+  },
+  {
+    id: 3,
+    first_name: "Demetris",
+    email: "dkilshall2@elpais.com",
+    date_of_birth: "2018/12/31",
+  },
+  {
+    id: 4,
+    first_name: "Amata",
+    email: "abraiden3@canalblog.com",
+    date_of_birth: "2012/05/23",
+  },
+  {
+    id: 5,
+    first_name: "Venita",
+    email: "vheap4@clickbank.net",
+    date_of_birth: "2020/10/04",
+  },
+  {
+    id: 6,
+    first_name: "Fairfax",
+    email: "fcrichton5@merriam-webster.com",
+    date_of_birth: "2009/12/23",
+  },
+  {
+    id: 7,
+    first_name: "Kathleen",
+    email: "kvasyukhnov6@devhub.com",
+    date_of_birth: "2010/12/20",
+  },
+  {
+    id: 8,
+    first_name: "Sam",
+    email: "scorck7@sitemeter.com",
+    date_of_birth: "2020/08/30",
+  },
+  {
+    id: 9,
+    first_name: "Virgilio",
+    email: "vferandez8@e-recht24.de",
+    date_of_birth: "2000/09/07",
+  },
+  {
+    id: 10,
+    first_name: "Townie",
+    email: "tpetyt9@upenn.edu",
+    date_of_birth: "2018/09/01",
+  },
+];
 
-let array = [{
-                "id": 1,
-                "first_name": "Nicki",
-                "email": "ncrozier0@squarespace.com",
-                "date_of_birth": "2009/05/09"
-                }, {
-                "id": 2,
-                "first_name": "Raychel",
-                "email": "rmcgrady1@cpanel.net",
-                "date_of_birth": "1996/11/05"
-                }, {
-                "id": 3,
-                "first_name": "Demetris",
-                "email": "dkilshall2@elpais.com",
-                "date_of_birth": "2018/12/31"
-                }, {
-                "id": 4,
-                "first_name": "Amata",
-                "email": "abraiden3@canalblog.com",
-                "date_of_birth": "2012/05/23"
-                }, {
-                "id": 5,
-                "first_name": "Venita",
-                "email": "vheap4@clickbank.net",
-                "date_of_birth": "2020/10/04"
-                }, {
-                "id": 6,
-                "first_name": "Fairfax",
-                "email": "fcrichton5@merriam-webster.com",
-                "date_of_birth": "2009/12/23"
-                }, {
-                "id": 7,
-                "first_name": "Kathleen",
-                "email": "kvasyukhnov6@devhub.com",
-                "date_of_birth": "2010/12/20"
-                }, {
-                "id": 8,
-                "first_name": "Sam",
-                "email": "scorck7@sitemeter.com",
-                "date_of_birth": "2020/08/30"
-                }, {
-                "id": 9,
-                "first_name": "Virgilio",
-                "email": "vferandez8@e-recht24.de",
-                "date_of_birth": "2000/09/07"
-                }, {
-                "id": 10,
-                "first_name": "Townie",
-                "email": "tpetyt9@upenn.edu",
-                "date_of_birth": "2018/09/01"
-              }]
-
-// Write a function filterByName that accepts a string as a parameter 
+// Write a function filterByName that accepts a string as a parameter
 // and returns an array with only those objects where the first_name field includes that string.
 
 let filterByName = (nameParam) => {
-  let filterArray = array.filter(item => item.first_name.includes(nameParam));
-  return filterArray;
-}
+  return array.filter((item) => item.first_name.includes(nameParam));
+};
 
 let requiredObject = filterByName("ta");
-console.log (requiredObject);
+console.log(requiredObject);
 // OUTPUT => got the array containing ta in the first name field
 // [
 //   {
@@ -80,9 +89,12 @@ console.log (requiredObject);
 // Use Array.map to return an array of all the email fields.
 
 let getEmails = () => {
-  let emailArray = array.map(item =>item.id + "_email: " + item.email);
+  let emailArray = array.map((item) => {
+  const {id , email} = item;
+  return id + "_email: " + email;
+});
   return emailArray;
-}
+};
 
 console.log(getEmails());
 // OUTPUT:
@@ -104,13 +116,15 @@ console.log(getEmails());
 let sortByBirthDateDesc = () => {
   let sortedArray = array.sort((a, b) => sortFunction(a, b));
   return sortedArray;
-}
+};
 
 let sortFunction = (a, b) => {
-  if(a.date_of_birth > b.date_of_birth) return 1;
-  else if (a.date_of_birth === b.date_of_birth) return 0;
+  const { date_of_birth: firstDob } = a;
+  const { date_of_birth: secondDob } = b;
+  if (firstDob > secondDob) return 1;
+  else if (firstDob === secondDob) return 0;
   else return -1;
-}
+};
 
 console.log(sortByBirthDateDesc());
 // OutPut:
@@ -181,11 +195,11 @@ console.log(sortByBirthDateDesc());
 // object where the id is equal to that number.
 
 let getById = (paramId) => {
- return array.filter(item => item.id === paramId);
-} 
+  return array.filter((item) => item.id === paramId);
+};
 
 console.log(getById(9));
-// output 
+// output
 // [
 //   {
 //     id: 9,
@@ -194,4 +208,3 @@ console.log(getById(9));
 //     date_of_birth: '2000/09/07'
 //   }
 // ]
-

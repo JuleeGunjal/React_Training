@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#search {
+    padding: 0.5rem;
+    margin-right: 1rem;
+}
+
+#user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#user-table th, #user-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+.loading {
+    display: none;
+}

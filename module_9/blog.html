@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Blog</title>
+        <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 600px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+  <div>
+    <h1>Submit a Blog</h1>
+    <form id="blogForm">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+        
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" required><br><br>
+        
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="5" required></textarea><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+    <script>
+        document.getElementById("blogForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const formDataObject = {};
+
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+
+            const apiUrl = "https://reqres.in/api/blogs"; // Example API endpoint
+
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formDataObject)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Blog submitted successfully!");
+                console.log(data);
+            })
+            .catch(error => {
+                alert("Error submitting the blog.");
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>

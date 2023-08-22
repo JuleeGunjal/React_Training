@@ -35,7 +35,6 @@ export const TodoApp = () => {
   };
 
   const markTodoCompleted = (id, completed) => {
-    console.log(id, completed);
     setFetchedTodo(
       fetchedTodo.map((todo) => {
         if (id === todo.id) {
@@ -47,13 +46,23 @@ export const TodoApp = () => {
     );
   };
 
+   const deleteTodo = (id) => {
+    const updatedData = fetchedTodo.filter((todo) => todo.id !== id);
+    console.log(updatedData.count);
+    setFetchedTodo(updatedData)
+   };
+
   const displayFiltered = showCompleted
     ? fetchedTodo.filter((todo) => todo.completed === true)
     : fetchedTodo;
 
   return (
     <div>
-      <AddTodoForm addTodo={addTodo} addTodoInput={addTodoInput} setAddTodoInput={setAddTodoInput}/>
+      <AddTodoForm
+        addTodo={addTodo}
+        addTodoInput={addTodoInput}
+        setAddTodoInput={setAddTodoInput}
+      />
       <TodoFilter
         showCompleted={showCompleted}
         setShowCompleted={setShowCompleted}
@@ -67,6 +76,7 @@ export const TodoApp = () => {
           markTodoCompleted={(id, completed) =>
             markTodoCompleted(id, completed)
           }
+          deleteTodo={(id) => deleteTodo(id)}
         />
       )}
     </div>

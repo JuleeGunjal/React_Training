@@ -44,3 +44,18 @@
 .d-gap {
   gap: 16px;
 }
+
+.todo-item {
+  display: flex; 
+  align-items: center;
+  margin-bottom: 10px; /* Adjust this value to set the desired spacing */
+}
+
+.todo-item label {
+  flex-grow: 1; /* Allow the title to take up remaining space */  
+}
+
+
+.todo-item button {
+  margin-right: 400px; /* Adjust this value to set the spacing between delete button and title */
+}

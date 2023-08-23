@@ -67,23 +67,7 @@ export const TodoApp = () => {
         {error && <div>{error}</div>}
         {loading && <p>Loading....</p>}
       </div>
-      <div>
-        <nav className="navbar">
-          <ul className="navbar-list">
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/todos">
-                Todo List
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/add-todo">
-                Add Todo
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <br />
-        <br />
+      
 
         <Switch>
           <Route exact path="/todos">
@@ -107,10 +91,10 @@ export const TodoApp = () => {
             />
           </Route>
           <Route exact path="/todos/:id">
-            <TodoItemDetails todos={todos} />
+            <TodoItemDetails todos={todos}/>
           </Route>
         </Switch>
       </div>
-    </div>
+    
   );
 };

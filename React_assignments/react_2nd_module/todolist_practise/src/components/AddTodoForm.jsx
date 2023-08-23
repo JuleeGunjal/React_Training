@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export const AddTodoForm = ({ addTodo , setAddTodoInput, addTodoInput}) => {  
+export const AddTodoForm = ({ addTodo , setAddTodoInput, addTodoInput}) => {   
   return (
-    <div className="d-flex d-gap">
+    <div className="d-flex d-gap" style={{ marginLeft: 30 + "em" }}>
       <input
         type="text"
         value={addTodoInput}

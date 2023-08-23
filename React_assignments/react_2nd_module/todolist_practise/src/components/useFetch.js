@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 export const useFetch = (apiMethod) => {
-  console.count(apiMethod);
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

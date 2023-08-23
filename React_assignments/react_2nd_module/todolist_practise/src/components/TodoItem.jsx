@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 export const TodoItem = ({
   completed,
   title,
@@ -12,7 +14,10 @@ export const TodoItem = ({
         checked={completed}
         onChange={(e) => markCompleted(id, e.target.checked)}
       />
-      <label style={{ paddingLeft: "2rem" }}>{title}</label>
+      <Link className="link-highlight" to={`/todos/${id}`}>
+        {title}
+      </Link>
+      <label style={{ paddingLeft: "2rem" }}></label>
       <button onClick={() => deleteTodo(id)}>Delete</button>
     </li>
   );

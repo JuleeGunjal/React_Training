@@ -4,6 +4,7 @@ export const TodoItem = ({
   completed,
   title,
   id,
+  deuDate,
   markCompleted,
   deleteTodo,
 }) => {

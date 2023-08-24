@@ -4,16 +4,18 @@ import { TodoList } from "./TodoList";
 import { TodoItemDetails } from "./TodoItemDetails";
 import { useCallback, useEffect, useState } from "react";
 import { useFetch } from "./useFetch";
-import { Switch, Route, Link } from "react-router-dom";
-import { useHistory } from "react-router-dom"
+import { Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { AddTodoItem } from "./AddTodoItem";
 
 export const TodoApp = () => {
   const [showCompleted, setShowCompleted] = useState(false);
   const [addTodoInput, setAddTodoInput] = useState("");
   const history = useHistory();
+  const [fetchedTodo, setFetchedTodo] = useState([]);
 
   const getTodos = useCallback(async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const response = await fetch("http://localhost:8002/todos");
 
     if (!response.ok) {
       throw new Error("Failed to fetch todos");
@@ -22,18 +24,18 @@ export const TodoApp = () => {
   }, []);
 
   const { todos, loading, error } = useFetch(getTodos);
-  const [fetchedTodo, setFetchedTodo] = useState([]);
 
   useEffect(() => {
     if (todos) {
+      console.log("Fetched Todo Set...");
       setFetchedTodo(todos);
     } else return;
   }, [todos]);
 
-  const addTodo = (title) => {
+  const addTodo = (title, dueDate) => {
     setFetchedTodo([
       ...fetchedTodo,
-      { id: fetchedTodo.length + 1, title, completed: false },
+      { id: fetchedTodo.length + 1, title, completed: false, dueDate },
     ]);
     setAddTodoInput("");
     history?.push("/todos");
@@ -53,7 +55,6 @@ export const TodoApp = () => {
 
   const deleteTodo = (id) => {
     const updatedData = fetchedTodo.filter((todo) => todo.id !== id);
-    console.log(updatedData.count);
     setFetchedTodo(updatedData);
   };
 
@@ -67,34 +68,35 @@ export const TodoApp = () => {
         {error && <div>{error}</div>}
         {loading && <p>Loading....</p>}
       </div>
-      
 
-        <Switch>
-          <Route exact path="/todos">
-            <TodoFilter
-              showCompleted={showCompleted}
-              setShowCompleted={setShowCompleted}
-            />
-            <TodoList
-              todos={displayFiltered}
-              markTodoCompleted={(id, completed) =>
-                markTodoCompleted(id, completed)
-              }
-              deleteTodo={(id) => deleteTodo(id)}
-            />
-          </Route>
-          <Route exact path="/add-todo">
-            <AddTodoForm
-              addTodo={addTodo}
-              addTodoInput={addTodoInput}
-              setAddTodoInput={setAddTodoInput}
-            />
-          </Route>
-          <Route exact path="/todos/:id">
-            <TodoItemDetails todos={todos}/>
-          </Route>
-        </Switch>
-      </div>
-    
+      <Switch>
+        <Route exact path="/todos">
+          <TodoFilter
+            showCompleted={showCompleted}
+            setShowCompleted={setShowCompleted}
+          />
+          <TodoList
+            todos={displayFiltered}
+            markTodoCompleted={(id, completed) =>
+              markTodoCompleted(id, completed)
+            }
+            deleteTodo={(id) => deleteTodo(id)}
+          />
+        </Route>
+        <Route exact path="/add-todo">
+          <AddTodoForm
+            addTodo={addTodo}
+            addTodoInput={addTodoInput}
+            setAddTodoInput={setAddTodoInput}
+          />
+        </Route>
+        <Route exact path="/add-todo-form">
+          <AddTodoItem addTodo={addTodo} />
+        </Route>
+        <Route exact path="/todos/:id">
+          <TodoItemDetails todos={todos} />
+        </Route>
+      </Switch>
+    </div>
   );
 };

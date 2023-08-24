@@ -36,7 +36,7 @@ export const useFetch = (apiMethod) => {
     const fetchData = async () => {
       try {
         const result = await apiMethod();
-        setTodos(result.slice(0, 20));
+        setTodos(result);
         setLoading(false);
       } catch (err) {
         setError(err);

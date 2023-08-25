@@ -1,7 +1,7 @@
 .todo-form {
   display: flex;
-  flex-direction: column; /* Stacks elements one below the other */
-  align-items: center; /* Aligns items to the left side */
+  flex-direction: column;
+  align-items: center;
   margin-top: 30px;
 }
 
@@ -12,14 +12,14 @@
 
 .todo-form label {
   font-weight: bold;
-  margin-bottom: 30px; /* Adds spacing between label and input */
+  margin-bottom: 30px;
 }
 
 .todo-form input {
   padding: 5px;
-  width: 100%; /* Makes the input expand to the full width */
+  width: 100%;
 }
 
 .todo-form button {
-  margin-top: 30px; /* Adds spacing below the form elements */
+  margin-top: 30px;
 }

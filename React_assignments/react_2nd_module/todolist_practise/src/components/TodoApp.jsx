@@ -2,7 +2,7 @@ import { AddTodoForm } from "./AddTodoForm";
 import { TodoFilter } from "./TodoFilter";
 import { TodoList } from "./TodoList";
 import { TodoItemDetails } from "./TodoItemDetails";
-import { useCallback, useEffect, useState } from "react";
+import { useMemo,useCallback, useEffect, useState } from "react";
 import { useFetch } from "./useFetch";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -27,7 +27,6 @@ export const TodoApp = () => {
 
   useEffect(() => {
     if (todos) {
-      console.log("Fetched Todo Set...");
       setFetchedTodo(todos);
     } else return;
   }, [todos]);
@@ -53,14 +52,25 @@ export const TodoApp = () => {
     );
   };
 
-  const deleteTodo = (id) => {
-    const updatedData = fetchedTodo.filter((todo) => todo.id !== id);
-    setFetchedTodo(updatedData);
-  };
 
   const displayFiltered = showCompleted
     ? fetchedTodo.filter((todo) => todo.completed === true)
     : fetchedTodo;
+
+
+   const [search, setSearch] = useState("");
+  //  const filteredTodos = displayFiltered.filter((todo) =>
+  //    todo.title.includes(search)
+  //  );
+
+   const filteredTodos = useMemo(() => {
+     return displayFiltered.filter((todo) => todo.title.includes(search));
+   }, [displayFiltered, search]);
+
+  const deleteTodo = (id) => {
+    const updatedData = fetchedTodo.filter((todo) => todo.id !== id);
+    setFetchedTodo(updatedData);
+  };
 
   return (
     <div>
@@ -81,6 +91,9 @@ export const TodoApp = () => {
               markTodoCompleted(id, completed)
             }
             deleteTodo={(id) => deleteTodo(id)}
+            filteredTodos={filteredTodos}
+            search={search}
+            setSearch={setSearch}
           />
         </Route>
         <Route exact path="/add-todo">
